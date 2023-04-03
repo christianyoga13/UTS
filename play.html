@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>UMN Gotcha!</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link href="https://fonts.cdnfonts.com/css/8bit-wonder" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <audio autoplay loop>
+    <source src="assets/sfx/bgm2.mp3" type="audio/mpeg">
+  </audio>
+</head>
+
+<body id="theBody">
+  <audio id="open-sound" src="assets/sfx/open.wav"></audio>
+  <div class="header-container">
+    <a class="navbar-brand" id="navbr" href="index.html">
+      <img src="assets/logo/logo3.png" alt="Logo" width="40" height="33" class="d-inline-block fw-bold m-1">
+    </a>
+    <h1 class="header-title">Welcome to UMNGotcha</h1>
+  </div>
+
+  <!-- Hubungkan dengan file JavaScript Bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <div class="container-fluid title">
+    <button class="btn-close" onClick="closeGame"></button>
+    <div id="message"></div>
+  </div>
+  <div class="container content">
+    <div class="row">
+      <div class="col d-flex flex-column justify-content-center align-items-middle gap 3 kotak text-center mt-3">
+        <p id="jam" style=""></p>
+        <!-- <p><time id="jam" datetime=""></time></p> -->
+        <div class="container-fluid">
+          <div id="background"></div>
+        </div>
+        <div class="container-fluid">
+          <!--           <div class="nameChar"></div> -->
+          <div id="character"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col status mt-4 text-center">
+        <h1 id="statusText">Status - Level 1</h1>
+      </div>
+    </div>
+    <div class="row mt-3">
+
+      <div class="col-3">
+        <div class="nameStats">
+          <p>Hunger</p>
+        </div>
+        <div class="feed-bar" id="bar"></div>
+      </div>
+
+      <div class="col-3">
+        <div class="nameStats">
+          <p>Mood</p>
+        </div>
+        <div class="happy-bar" id="bar"></div>
+      </div>
+
+      <div class="col-3">
+        <div class="nameStats">
+          <p>Sleep</p>
+        </div>
+        <div class="sleep-bar" id="bar"></div>
+      </div>
+
+      <div class="col-3">
+        <div class="nameStats">
+          <p>Health</p>
+        </div>
+        <div class="health-bar" id="bar"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container button">
+    <div class="row mt-2">
+      <div class="col-sm-3 text-center mt-2">
+        <button class="btnStatus" onclick="makan()"><img src="assets/tombol/eat.png" width="20px" height="20px"
+            style="margin-right: 5.5px;">EAT</button>
+      </div>
+      <div class="col-sm-3 text-center mt-2">
+        <button id="btn" class="play" onclick="main()"><img src="assets/tombol/play.png" width="20px"
+            height="20px">PLAY</button>
+      </div>
+      <div class="col-sm-3 text-center mt-2">
+        <button id="btn" onclick="tidur()"><img src="assets/tombol/sleep.png" width="20px" height="20px"
+            style="margin-right: 3.5px;">SLEEP</button>
+      </div>
+      <div class="col-sm-3 text-center mt-2 mb-3">
+        <button id="btn" onclick="obat()"><img src="assets/tombol/medicine.png" width="20px" height="20px"
+            style="margin-right: 4.5px;">MEDICINE</button>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button id="btn" onclick="aksesoris()"><img src="assets/tombol/medicine.png" width="20px" height="20px"
+        style="margin-right: 4.5px;">Aksesoris</button>
+  </div>
+  <!--Navbar-->
+  <!--   <div class="container">
+    <nav class="navbar nav bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" id="navbr" href="index.html">
+          <img src="assets/logo/logo3.png" alt="Logo" width="40" height="33" class="d-inline-block fw-bold m-1">
+          <b>UMNGotcha!</b>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="#footer">Group Members</a>
+            <a class="nav-link" href="#">Tutorial</a>
+          </div>
+         </div> 
+      </div>
+    </nav>
+  </div> -->
+
+  <!--End of Navbar-->
+  <!--       <div class="nameChar"></div>
+  
+      <div class = "container">
+        <div class = "container-fluid">
+          <div class = "row">
+            <div class = "col text-center">
+              <div id="clock"></div>
+              <div id="message"></div>
+              <div id="background"></div>
+              <div id="character"></div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+        <div class="row">
+          <div class="col mt-5 stat">
+            <h1 class="mt-4">Status</h1>
+          </div>
+          <div class="bar">
+            <div class="nameStats">
+              <p>Health</p>
+            </div>
+            <div class="health-bar" id="bar"></div>
+            <div class="nameStats">
+              <p>Hunger</p>
+            </div>
+            <div class="feed-bar" id="bar"></div>
+            <div class="nameStats">
+              <p>Sleep</p>
+            </div>
+            <div class="sleep-bar" id="bar"></div>
+            <div class="nameStats">
+              <p>Mood</p>
+            </div>
+            <div class="happy-bar" id="bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row mt-3">
+          <div class="col text-center">
+            <button id="btn" onmouseup="makan()">EAT</button>
+          </div>
+          <div class="col text-center">
+            <button id="btn" onclick="main()">PLAY</button>
+          </div>
+          <div class="col text-center">
+            <button id="btn" onclick="tidur()">SLEEP</button>
+          </div>
+          <div class="col text-center">
+            <button id="btn" onclick="obat()">MEDICINE</button>
+          </div>
+        </div>
+      </div> -->
+
+
+  <!--     <div class="container-fluid">
+      <div class="row" id="game">
+        <div class="col-sm-8 text-center" id="screen">
+          <div id="screen-container">
+            <div id="info">Let's Play</div>
+            <div id="alertE"></div>
+            <div id="alertP"></div>
+            <div id="alertS"></div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col mt-5 stat ">
+              <h1 class="mt-4">Status</h1>
+            </div>
+            <div class="bar">
+              <div class="nameStats">
+                <p>Health</p>
+              </div>
+              <div class="health-bar" id="bar"></div>
+              <div class="nameStats">
+                <p>Hunger</p>
+              </div>
+              <div class="feed-bar" id="bar"></div>
+              <div class="nameStats">
+                <p>Sleep</p>
+              </div>
+              <div class="sleep-bar" id="bar"></div>
+              <div class="nameStats">
+                <p>Mood</p>
+              </div>
+              <div class="happy-bar" id="bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row mt-3">
+        <div class="col text-center">
+          <button id="btn" onclick="makan()">EAT</button>
+        </div>
+        <div class="col text-center">
+          <button id="btn" onclick="main()">PLAY</button>
+        </div>
+        <div class="col text-center">
+          <button id="btn" onclick="tidur()">SLEEP</button>
+        </div>
+        <div class="col text-center">
+          <button id="btn" onclick="obat()">MEDICINE</button>
+        </div>
+      </div>
+    </div> -->
+  </div>
+
+  <!--Status bar-->
+  <!--   <div class="container-fluid">
+    <div class="row">
+      <div class="col mt-5 stat">
+        <h1 class="mt-4">Status</h1>
+      </div>
+      <div class="bar">
+        <div class="nameStats">
+          <p>Health</p>
+        </div>
+        <div class="health-bar" id="bar"></div>
+        <div class="nameStats">
+          <p>Hunger</p>
+        </div>
+        <div class="feed-bar" id="bar"></div>
+        <div class="nameStats">
+          <p>Sleep</p>
+        </div>
+        <div class="sleep-bar" id="bar"></div>
+        <div class="nameStats">
+          <p>Mood</p>
+        </div>
+        <div class="happy-bar" id="bar"></div>
+      </div>
+    </div>
+  </div> -->
+
+  <!--Button buat nambah status-->
+  <!--   <div class="container-fluid">
+    <div class="row mt-3">
+      <div class="col text-center">
+        <button id="btn" onclick="makan()">EAT</button>
+      </div>
+      <div class="col text-center">
+        <button id="btn" onclick="main()">PLAY</button>
+      </div>
+      <div class="col text-center">
+        <button id="btn" onclick="tidur()">SLEEP</button>
+      </div>
+      <div class="col text-center">
+        <button id="btn" onclick="obat()">MEDICINE</button>
+      </div>
+    </div>
+  </div> -->
+
+  <script src="script.js"></script>
+  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    let time;
+    let jam;
+    let detik;
+    let level;
+    if (sessionStorage.getItem("jam") == null || sessionStorage.getItem("jam") == undefined) {
+      jam = 5;
+      detik = 30;
+      level = 1;
+    } else {
+      jam = sessionStorage.getItem("jam");
+      detik = sessionStorage.getItem("detik");
+      level = sessionStorage.getItem("level");
+      if (detik >= 60) {
+        detik = 0;
+        jam += 1;
+      }
+      if (jam >= 24) {
+        jam = 0;
+      }
+    }
+    var greetingElem = $("#message");
+    var backgroundElem = $(".content");
+    var statusText = $("#statusText");
+    var character = $("#character");
+    let playerName = localStorage.getItem("name");
+
+    function updateClock() {
+      detik += 30;
+      if (detik >= 60) {
+        detik = 0;
+        jam += 1;
+      }
+      if (jam >= 24) {
+        jam = 0;
+      }
+
+      if (jam == 15 && detik == 0) {
+        if (level >= 2) {
+          level += 1;
+        }
+        statusText.text("Status - Level : " + level);
+      }
+
+
+      if (jam >= 6 && jam <= 10) {
+        console.log("aaaaa");
+        greetingElem.text("Selamat Pagi, " + playerName + "!");
+        backgroundElem.attr('style', 'background-image : url("assets/bg/background_pagi.jpg")');
+      }
+      if (jam >= 11 && jam <= 14) {
+        console.log("aaaaa");
+        greetingElem.text("Selamat Siang, " + playerName + "!");
+        backgroundElem.attr('style', 'background-image : url("assets/bg/background_pagi.jpg")');
+
+
+      } else if (jam >= 15 && jam <= 18) {
+        console.log("aaaaa");
+        greetingElem.text("Selamat Sore, " + playerName + "!");
+        backgroundElem.attr('style', 'background-image : url("assets/bg/background_sore.jpg")');
+
+      } else if (jam >= 19 && jam < 24 || jam >= 0 && jam < 6) {
+        console.log("aaaaa");
+        backgroundElem.attr('style', 'background-image : url("assets/bg/background_malam.jpg")');
+        greetingElem.text("Selamat malam, " + playerName + "!");
+      }
+
+      hours = (jam < 10) ? "0" + jam : jam;
+      minutes = (detik < 10) ? "0" + detik : detik;
+      time = hours + " : " + minutes;
+      $("#jam").text(time);
+    }
+    setInterval(updateClock, 1000);
+  </script>
+
+</body>
+
+</html>
